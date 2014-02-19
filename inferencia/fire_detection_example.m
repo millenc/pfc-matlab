@@ -401,11 +401,11 @@ T = @prod;
 M = @mean;
 
 % Hechos
-fact(1) = fact_value(x_temp, 65);
-fact(2) = fact_value(x_smoke, 50);
-fact(3) = fact_value(x_light, 500);
-fact(4) = fact_value(x_humidity, 50);
-fact(5) = fact_value(x_distance, 40);
+fact(1) = fact_value(x_temp, 30);
+fact(2) = fact_value(x_smoke, 84);
+fact(3) = fact_value(x_light, 234);
+fact(4) = fact_value(x_humidity, 63);
+fact(5) = fact_value(x_distance, 56);
 
 % Variable universo de salida
 y.v(1,:) = x_threat;
