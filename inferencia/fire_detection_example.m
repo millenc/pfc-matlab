@@ -389,7 +389,11 @@ for i=1:m
 end
 
 % Construcción de índices de solapamiento
-Opi = make_overlap_index(@mean,@(x,y)(x*y));
+Opi     = make_overlap_index(@mean,@(x,y)(x*y));
+Oavgmin = make_overlap_index(@mean,@min);
+Omaxmin = make_overlap_index(@max,@min);
+Osqrt   = make_overlap_index(@mean,@(x,y)(sqrt(x*y)));
+Osin    = make_overlap_index(@mean,@(x,y)(sin((pi/2)*(x*y)^(1/4))));
 
 %Funciones utilizadas en la interpolación
 O = Opi;
@@ -397,11 +401,11 @@ T = @prod;
 M = @mean;
 
 % Hechos
-fact(1) = fact_value(x_temp, 10);
-fact(2) = fact_value(x_smoke, 0);
-fact(3) = fact_value(x_light, 100);
-fact(4) = fact_value(x_humidity, 100);
-fact(5) = fact_value(x_distance, 80);
+fact(1) = fact_value(x_temp, 65);
+fact(2) = fact_value(x_smoke, 50);
+fact(3) = fact_value(x_light, 500);
+fact(4) = fact_value(x_humidity, 50);
+fact(5) = fact_value(x_distance, 40);
 
 % Variable universo de salida
 y.v(1,:) = x_threat;
@@ -412,3 +416,25 @@ Y = interpolation( R, fact, y, O , T, M);
 figure;
 plot(x_threat,Y);
 title('Threat');
+
+% Utilizar varios índices de solapamiento y T-normas
+Os(1).f = Opi;     Os(1).name = 'Opi';
+Os(2).f = Oavgmin; Os(2).name = 'Oavgmin';
+Os(3).f = Omaxmin; Os(3).name = 'Omaxmin';
+Os(4).f = Osqrt;   Os(4).name = 'Osqrt';
+Os(5).f = Osin;    Os(5).name = 'Osin';
+
+Ts(1).f = @prod; Ts(1).name = 'Producto';
+Ts(2).f = @min;  Ts(2).name = 'Mínimo';
+
+for j=1:length(Ts)
+    figure('name',strcat('T-norma: ', Ts(j).name));
+    for i=1:length(Os)
+        Y = interpolation( R, fact, y, Os(i).f , Ts(j).f, M);
+        subplot(3,2,i);
+        plot(x_threat, Y);
+        title(Os(i).name);
+    end
+end
+
+
