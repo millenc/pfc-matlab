@@ -1,4 +1,5 @@
 clearvars;
+addpath('./fire_detection_lang_variables');
 
 x_temp     = 0:130;
 x_smoke    = 0:100;
