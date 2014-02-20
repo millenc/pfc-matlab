@@ -401,11 +401,11 @@ T = @prod;
 M = @mean;
 
 % Hechos
-fact(1) = fact_value(x_temp, 30);
-fact(2) = fact_value(x_smoke, 84);
-fact(3) = fact_value(x_light, 234);
-fact(4) = fact_value(x_humidity, 63);
-fact(5) = fact_value(x_distance, 56);
+fact(1) = fact_value(x_temp, 130);
+fact(2) = fact_value(x_smoke, 100);
+fact(3) = fact_value(x_light, 1000);
+fact(4) = fact_value(x_humidity, 0);
+fact(5) = fact_value(x_distance, 0);
 
 % Variable universo de salida
 y.v(1,:) = x_threat;
@@ -413,8 +413,16 @@ y.v(2,:) = zeros(length(x_threat),1);
 
 Y = interpolation( R, fact, y, O , T, M);
 
+dc = round(defuzz(x_threat, Y, 'centroid'));
+db = round(defuzz(x_threat, Y, 'bisector'));
+dm = round(defuzz(x_threat, Y, 'mom'));
+ds = round(defuzz(x_threat, Y, 'som'));
+dl = round(defuzz(x_threat, Y, 'lom'));
+
 figure;
-plot(x_threat,Y);
+plot(x_threat,Y,'-',dc,Y(dc),'*',db,Y(db),'+',dm,Y(dm),'.',ds,Y(ds),'^',dl,Y(dl),'v');
+%text(dc,Y(dc),sprintf('%d',dc));
+legend('Threat',strcat('centroid:',sprintf('%d',dc)),strcat('bisector:',sprintf('%d',db)),strcat('mom:',sprintf('%d',dm)),strcat('som:',sprintf('%d',ds)),strcat('lom:',sprintf('%d',dl)));
 title('Threat');
 
 % Utilizar varios índices de solapamiento y T-normas
@@ -432,8 +440,17 @@ for j=1:length(Ts)
     figure('name',strcat('T-norma: ', Ts(j).name));
     for i=1:length(Os)
         Y = interpolation( R, fact, y, Os(i).f , Ts(j).f, M);
+        
+        % Defuzzification
+        dc = round(defuzz(x_threat, Y, 'centroid'));
+        db = round(defuzz(x_threat, Y, 'bisector'));
+        dm = round(defuzz(x_threat, Y, 'mom'));
+        ds = round(defuzz(x_threat, Y, 'som'));
+        dl = round(defuzz(x_threat, Y, 'lom'));
+        
         subplot(3,2,i);
-        plot(x_threat, Y);
+        plot(x_threat,Y,'-',dc,Y(dc),'*',db,Y(db),'+',dm,Y(dm),'.',ds,Y(ds),'^',dl,Y(dl),'v');
+        legend('Threat',strcat('centroid:',sprintf('%d',dc)),strcat('bisector:',sprintf('%d',db)),strcat('mom:',sprintf('%d',dm)),strcat('som:',sprintf('%d',ds)),strcat('lom:',sprintf('%d',dl)));
         title(Os(i).name);
     end
 end
