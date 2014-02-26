@@ -434,7 +434,7 @@ Os(5).f = Osin;    Os(5).name = 'Osin';
 
 Ts(1).f = @prod; Ts(1).name = 'Producto';
 Ts(2).f = @min;  Ts(2).name = 'Mínimo';
-Ts(3).f = @lukasiewicz; Ts(3).name = 'Lukasiewicz';
+%Ts(3).f = @lukasiewicz; Ts(3).name = 'Lukasiewicz';
 
 for j=1:length(Ts)
     figure('name',strcat('T-norma: ', Ts(j).name));
