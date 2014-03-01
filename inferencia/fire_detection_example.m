@@ -1,5 +1,6 @@
 clearvars;
 addpath('./fire_detection_lang_variables');
+addpath('./functions');
 
 x_temp     = 0:130;
 x_smoke    = 0:100;
@@ -401,11 +402,11 @@ T = @prod;
 M = @mean;
 
 % Hechos
-fact(1) = fact_value(x_temp, 130);
-fact(2) = fact_value(x_smoke, 100);
-fact(3) = fact_value(x_light, 1000);
-fact(4) = fact_value(x_humidity, 0);
-fact(5) = fact_value(x_distance, 0);
+fact(1) = fact_value(x_temp, 30);
+fact(2) = fact_value(x_smoke, 30);
+fact(3) = fact_value(x_light, 300);
+fact(4) = fact_value(x_humidity, 30);
+fact(5) = fact_value(x_distance, 40);
 
 % Variable universo de salida
 y.v(1,:) = x_threat;
@@ -434,6 +435,11 @@ Os(5).f = Osin;    Os(5).name = 'Osin';
 
 Ts(1).f = @prod; Ts(1).name = 'Producto';
 Ts(2).f = @min;  Ts(2).name = 'Mínimo';
+Ts(3).f = @geomean;  Ts(3).name = 'Media geométrica';
+Ts(4).f = @harmmean;  Ts(4).name = 'Media harmónica';
+Ts(5).f = @sinmean;  Ts(5).name = 'Sinmean';
+Ts(6).f = @einsteinmean;  Ts(6).name = 'Einstein mean';
+
 %Ts(3).f = @lukasiewicz; Ts(3).name = 'Lukasiewicz';
 
 for j=1:length(Ts)
