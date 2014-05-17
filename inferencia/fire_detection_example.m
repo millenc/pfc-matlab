@@ -2,7 +2,7 @@ clearvars;
 addpath('./fire_detection_lang_variables');
 addpath('./functions');
 
-x_temp     = 0:130;
+x_temp     = 0:120;
 x_smoke    = 0:100;
 x_light    = 0:1000;
 x_humidity = 0:100;
