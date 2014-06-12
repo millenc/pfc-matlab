@@ -1,5 +1,7 @@
 clearvars;
-addpath('./fire_detection_lang_variables');
+addpath('./lang_variables');
+addpath('../functions');
+addpath('../matlab2tikz');
 
 x_threat = 0:100;
 
@@ -11,7 +13,7 @@ for i=1:m
     R(i).A = rules(i,1:n-1);
     R(i).B = rules{i,n};
 end
-fact = [30,20,500,50,40];
+fact = [30,30,1000,50,40];
 y.v(1,:) = x_threat;
 
 B = mamdani(R, fact, y);

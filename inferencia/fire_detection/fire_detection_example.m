@@ -1,6 +1,7 @@
 clearvars;
-addpath('./fire_detection_lang_variables');
-addpath('./functions');
+addpath('./lang_variables');
+addpath('../functions');
+addpath('../matlab2tikz');
 
 x_temp     = 0:120;
 x_smoke    = 0:100;

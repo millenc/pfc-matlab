@@ -1,3 +1,6 @@
+clearvars;
+addpath('../functions');
+addpath('./lang_variables');
 % Dibujar las funciones de pertenencia de las etiquetas lingüisticas Low,
 % Medium y High para las variables BMI y Age.
 %plot(14:42,arrayfun(@bmi_low,14:42),14:42,arrayfun(@bmi_medium,14:42),14:42,arrayfun(@bmi_high,14:42));

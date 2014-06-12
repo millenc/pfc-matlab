@@ -1,5 +1,9 @@
 classdef temp
     methods (Static)
+        function x = get_x()
+            x = 0:120;
+        end
+        
         function u = low(temp)
             u = lineal(0,50,temp,'r');
         end
