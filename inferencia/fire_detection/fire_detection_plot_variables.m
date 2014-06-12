@@ -1,5 +1,5 @@
 clearvars;
-addpath('./matlab2tikz');
+addpath('../matlab2tikz');
 addpath('./lang_variables');
 addpath('../functions');
 
