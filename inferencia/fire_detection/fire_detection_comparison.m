@@ -5,7 +5,7 @@ addpath('../functions');
 % Dominios
 x_temp     = temp.get_x();
 x_smoke    = smoke.get_x();
-x_light    = light.get_x();
+x_light    = llight.get_x();
 x_humidity = humidity.get_x();
 x_distance = distance.get_x();
 x_threat   = threat.get_x();

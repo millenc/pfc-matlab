@@ -1,4 +1,4 @@
-classdef light
+classdef llight
     methods (Static)
         function x = get_x()
             x = 0:1000;

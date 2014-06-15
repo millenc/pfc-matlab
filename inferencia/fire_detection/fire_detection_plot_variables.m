@@ -44,7 +44,7 @@ legend('Low','Medium','High');
 
 x = x_light;
 subplot(3,2,3)
-plot(x,arrayfun(@light.low,x),x,arrayfun(@light.medium,x),x,arrayfun(@light.high,x));
+plot(x,arrayfun(@llight.low,x),x,arrayfun(@llight.medium,x),x,arrayfun(@llight.high,x));
 title('Light (lux)')
 legend('Low','Medium','High');
 
