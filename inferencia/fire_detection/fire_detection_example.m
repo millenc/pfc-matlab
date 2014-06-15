@@ -61,11 +61,11 @@ T = @prod;
 M = @mean;
 
 % Hechos
-fact(1) = fact_value(x_temp, 30);
-fact(2) = fact_value(x_smoke, 20);
-fact(3) = fact_value(x_light, 500);
-fact(4) = fact_value(x_humidity, 50);
-fact(5) = fact_value(x_distance, 40);
+fact(1) = singleton_fuzzifier(x_temp, 30);
+fact(2) = singleton_fuzzifier(x_smoke, 20);
+fact(3) = singleton_fuzzifier(x_light, 500);
+fact(4) = singleton_fuzzifier(x_humidity, 50);
+fact(5) = singleton_fuzzifier(x_distance, 40);
 
 % Variable universo de salida
 y.v(1,:) = x_threat;
@@ -80,7 +80,7 @@ ds = round(defuzz(x_threat, Y, 'som'));
 dl = round(defuzz(x_threat, Y, 'lom'));
 
 figure;
-plot(x_threat,Y,'-',dc,Y(dc),'*',db,Y(db),'+',dm,Y(dm),'.',ds,Y(ds),'^',dl,Y(dl),'v');
+plot(x_threat,Y,'-',dc,Y(dc+1),'*',db,Y(db+1),'+',dm,Y(dm+1),'.',ds,Y(ds+1),'^',dl,Y(dl+1),'v');
 %text(dc,Y(dc),sprintf('%d',dc));
 legend('Threat',strcat('centroid:',sprintf('%d',dc)),strcat('bisector:',sprintf('%d',db)),strcat('mom:',sprintf('%d',dm)),strcat('som:',sprintf('%d',ds)),strcat('lom:',sprintf('%d',dl)));
 title('Threat');
@@ -114,7 +114,7 @@ for j=1:length(Ts)
         dl = round(defuzz(x_threat, Y, 'lom'));
         
         subplot(3,2,i);
-        plot(x_threat,Y,'-',dc,Y(dc),'*',db,Y(db),'+',dm,Y(dm),'.',ds,Y(ds),'^',dl,Y(dl),'v');
+        plot(x_threat,Y,'-',dc,Y(dc+1),'*',db,Y(db+1),'+',dm,Y(dm+1),'.',ds,Y(ds+1),'^',dl,Y(dl+1),'v');
         legend('Threat',strcat('centroid:',sprintf('%d',dc)),strcat('bisector:',sprintf('%d',db)),strcat('mom:',sprintf('%d',dm)),strcat('som:',sprintf('%d',ds)),strcat('lom:',sprintf('%d',dl)));
         title(Os(i).name);
     end
