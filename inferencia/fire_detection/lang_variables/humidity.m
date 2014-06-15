@@ -1,5 +1,9 @@
 classdef humidity
     methods (Static)
+        function x = get_x()
+            x = 0:100;
+        end
+        
         function u = low(humidity)
             u = lineal(0,40,humidity,'r');
         end

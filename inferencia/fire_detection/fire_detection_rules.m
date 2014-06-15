@@ -1,4 +1,4 @@
-function rules = fire_detection_rules()
+function R = fire_detection_rules()
 rules = {
          %temp.low y smoke.low
          @temp.low,@smoke.low,@light.low,@humidity.high,@distance.far,@threat.very_low;
@@ -333,5 +333,14 @@ rules = {
          @temp.high,@smoke.high,@light.high,@humidity.low,@distance.medium,@threat.very_high;
          @temp.high,@smoke.high,@light.high,@humidity.low,@distance.close,@threat.very_high;
 };
+
+[m,n] = size(rules);
+
+%Inicializar el conjunto de reglas
+for i=1:m
+    R(i).n = i;
+    R(i).A = rules(i,1:n-1);
+    R(i).B = rules{i,n};
+end
 end
 

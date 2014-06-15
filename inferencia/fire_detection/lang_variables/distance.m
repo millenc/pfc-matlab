@@ -1,5 +1,9 @@
 classdef distance
     methods (Static)
+        function x = get_x()
+            x = 0:80;
+        end
+        
         function u = close(distance)
             u = lineal(0,30,distance,'r');
         end

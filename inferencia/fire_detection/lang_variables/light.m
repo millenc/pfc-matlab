@@ -1,5 +1,9 @@
 classdef light
     methods (Static)
+        function x = get_x()
+            x = 0:1000;
+        end
+        
         function u = low(light)
             u = lineal(0,400,light,'r');
         end

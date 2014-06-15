@@ -3,12 +3,12 @@ addpath('./lang_variables');
 addpath('../functions');
 addpath('../matlab2tikz');
 
-x_temp     = 0:120;
-x_smoke    = 0:100;
-x_light    = 0:1000;
-x_humidity = 0:100;
-x_distance = 0:80;
-x_threat   = 0:100;
+x_temp     = temp.get_x();
+x_smoke    = smoke.get_x();
+x_light    = light.get_x();
+x_humidity = humidity.get_x();
+x_distance = distance.get_x();
+x_threat   = threat.get_x();
 
 x = x_temp;
 subplot(3,2,1)
@@ -46,15 +46,7 @@ plot(x,arrayfun(@threat.very_low,x),x,arrayfun(@threat.low,x),x,arrayfun(@threat
 title('Threat of fire (%)')
 legend('Very Low','Low','Medium','High','Very High');
 
-rules = fire_detection_rules();
-
-[m,n] = size(rules);
-%Inicializar el conjunto de reglas
-for i=1:m
-    R(i).n = i;
-    R(i).A = rules(i,1:n-1);
-    R(i).B = rules{i,n};
-end
+R = fire_detection_rules();
 
 % Construcción de índices de solapamiento
 Opi     = make_overlap_index(@mean,@(x,y)(x*y));
