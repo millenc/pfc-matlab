@@ -44,6 +44,6 @@ function B = fire_detection_mamdani(temp, smoke, light, humidity, distance)
     xlabel('Riesgo (%)');
     %title(strcat('Temp: ',sprintf('%d',temp),', Humo: ',sprintf('%d',smoke),', Luz: ',sprintf('%d',light),', Humedad: ',sprintf('%d',humidity),', Distancia: ',sprintf('%d',distance)));
     %legend(strcat('centroid: ',sprintf('%d',dc)),strcat('bisector: ',sprintf('%d',db)),strcat('mom: ',sprintf('%d',dm)),strcat('som: ',sprintf('%d',ds)),strcat('lom: ',sprintf('%d',dl)));
-    matlab2tikz(strcat('./output/mamdani-','T',sprintf('%d',temp),'_S',sprintf('%d',smoke),'_L',sprintf('%d',light),'_H',sprintf('%d',humidity),'_D',sprintf('%d',distance),'.tikz'),'showInfo', false,'standalone', false,'height', '\figureheight', 'width', '\figurewidth');
+    matlab2tikz(strcat('./output/mamdani/mamdani-','T',sprintf('%d',temp),'_S',sprintf('%d',smoke),'_L',sprintf('%d',light),'_H',sprintf('%d',humidity),'_D',sprintf('%d',distance),'.tikz'),'showInfo', false,'standalone', false,'height', '\figureheight', 'width', '\figurewidth');
 end
 

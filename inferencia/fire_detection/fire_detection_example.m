@@ -50,7 +50,7 @@ R = fire_detection_rules();
 
 %Funciones utilizadas en la interpolación
 O = O.pi();
-T = @prod;
+T = @min;
 M = @mean;
 
 % Hechos
