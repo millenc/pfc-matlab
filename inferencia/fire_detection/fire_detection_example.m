@@ -48,15 +48,8 @@ legend('Very Low','Low','Medium','High','Very High');
 
 R = fire_detection_rules();
 
-% Construcción de índices de solapamiento
-Opi     = make_overlap_index(@mean,@(x,y)(x*y));
-Oavgmin = make_overlap_index(@mean,@min);
-Omaxmin = make_overlap_index(@max,@min);
-Osqrt   = make_overlap_index(@mean,@(x,y)(sqrt(x*y)));
-Osin    = make_overlap_index(@mean,@(x,y)(sin((pi/2)*(x*y)^(1/4))));
-
 %Funciones utilizadas en la interpolación
-O = Opi;
+O = O.pi();
 T = @prod;
 M = @mean;
 

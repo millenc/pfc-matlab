@@ -17,12 +17,12 @@ y.v(2,:) = zeros(length(x_threat),1);
 % Reglas
 R = fire_detection_rules();
 
-% Construcción de índices de solapamiento
-Opi     = make_overlap_index(@mean,@(x,y)(x*y));
-Oavgmin = make_overlap_index(@mean,@min);
-Omaxmin = make_overlap_index(@max,@min);
-Osqrt   = make_overlap_index(@mean,@(x,y)(sqrt(x*y)));
-Osin    = make_overlap_index(@mean,@(x,y)(sin((pi/2)*(x*y)^(1/4))));
+% Obtener índices de solapamiento
+Opi     = O.pi();
+Oavgmin = O.avgmin();
+Omaxmin = O.maxmin();
+Osqrt   = O.sqrt();
+Osin    = O.sin();
 
 % Hechos (Difusificador singleton)
 fact(1) = singleton_fuzzifier(x_temp, 30);
