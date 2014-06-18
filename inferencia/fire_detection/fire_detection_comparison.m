@@ -1,6 +1,11 @@
 clearvars;
 addpath('./lang_variables');
 addpath('../functions');
+% Parámetros gráfico
+alw = 0.75;    % AxesLineWidth
+fsz = 9;      % Fontsize
+lw = 1.2;      % LineWidth
+msz = 9;       % MarkerSize
 
 %Variable de entrada
 t = 30;
@@ -51,10 +56,10 @@ Os(5).f = Osin;    Os(5).name = 'Osin';     Os(5).latex_name = '$O_{sin}$';
 % T-normas
 Ts(1).f = @prod; Ts(1).name = 'Producto';               Ts(1).latex_name = '$T_{prod}$';
 Ts(2).f = @min;  Ts(2).name = 'Mínimo';                 Ts(2).latex_name = '$T_{min}$';
-Ts(3).f = @geomean;  Ts(3).name = 'Media geométrica';   Ts(3).latex_name = '$T_{geo}$';
-Ts(4).f = @harmmean;  Ts(4).name = 'Media harmónica';   Ts(4).latex_name = '$T_{harm}$';
-Ts(5).f = @sinmean;  Ts(5).name = 'Sinmean';            Ts(5).latex_name = '$T_{sin}$';
-Ts(6).f = @einsteinmean;  Ts(6).name = 'Einstein mean'; Ts(6).latex_name = '$T_{einstein}$';
+%Ts(3).f = @geomean;  Ts(3).name = 'Media geométrica';   Ts(3).latex_name = '$T_{geo}$';
+%Ts(4).f = @harmmean;  Ts(4).name = 'Media harmónica';   Ts(4).latex_name = '$T_{harm}$';
+%Ts(5).f = @sinmean;  Ts(5).name = 'Sinmean';            Ts(5).latex_name = '$T_{sin}$';
+%Ts(6).f = @einsteinmean;  Ts(6).name = 'Einstein mean'; Ts(6).latex_name = '$T_{einstein}$';
 
 % Open the file
 fName = strcat('table-interpolation-comparison--','T',sprintf('%d',t),'_S',sprintf('%d',s),'_L',sprintf('%d',l),'_H',sprintf('%d',h),'_D',sprintf('%d',d),'.tex');%'fire_detection_interpolation_comparison.tex';
@@ -70,6 +75,7 @@ fprintf(fid,'%s\r\n',' \multirow{2}{*}{\textbf{T-norma}} & \multirow{2}{*}{\text
 fprintf(fid,'%s\r\n','& & \textbf{cent.  (\textasteriskcentered)} & \textbf{bis. (+)} & \textbf{som ($\triangledown$)} & \textbf{mom ($\square$)} & \textbf{lom ($\vartriangle$)}  \\ \hline');
 for j=1:length(Ts)
     figure('name',strcat('T-norma: ', Ts(j).name));
+    set(gca, 'FontSize', fsz, 'LineWidth', alw);
     for i=1:length(Os)
         Y = interpolation( R, fact, y, Os(i).f , Ts(j).f, M);
         
@@ -81,25 +87,26 @@ for j=1:length(Ts)
         dl = round(defuzz(x_threat, Y, 'lom'));
         
         subplot(3,2,i);
-        plot(x_threat,Y,'-',dc,Y(dc+1),'*',db,Y(db+1),'+',dm,Y(dm+1),'.',ds,Y(ds+1),'^',dl,Y(dl+1),'v');
-        legend('Threat',strcat('centroid:',sprintf('%d',dc)),strcat('bisector:',sprintf('%d',db)),strcat('mom:',sprintf('%d',dm)),strcat('som:',sprintf('%d',ds)),strcat('lom:',sprintf('%d',dl)));
+        plot(x_threat,Y,'-k',dc,Y(dc+1),'*b',db,Y(db+1),'+g',dm,Y(dm+1),'sr',ds,Y(ds+1),'vc',dl,Y(dl+1),'^m','LineWidth',lw);
+        %legend('Threat',strcat('centroid:',sprintf('%d',dc)),strcat('bisector:',sprintf('%d',db)),strcat('mom:',sprintf('%d',dm)),strcat('som:',sprintf('%d',ds)),strcat('lom:',sprintf('%d',dl)));
         title(Os(i).name);
 
         % Write to file
-        s = '';
+        str = '';
         if(i==1)
-            s = strcat(s,'\multirow{',sprintf('%d', length(Os)),'}{*}{',Ts(j).latex_name,'} ');
+            str = strcat(str,'\multirow{',sprintf('%d', length(Os)),'}{*}{',Ts(j).latex_name,'} ');
         end
-        s = strcat(s,'& ',Os(i).latex_name,' & ',sprintf('%d',dc),' & ',sprintf('%d',db),' & ',sprintf('%d',ds),' & ',sprintf('%d',dm),' & ',sprintf('%d',dl),' \\ ');
+        str = strcat(str,'& ',Os(i).latex_name,' & ',sprintf('%d',dc),' & ',sprintf('%d',db),' & ',sprintf('%d',ds),' & ',sprintf('%d',dm),' & ',sprintf('%d',dl),' \\ ');
         if(i==length(Os) && j<length(Ts))
-            s = strcat(s, ' \hhline{|=|=|=|=|=|=|=|} ');
+            str = strcat(str, ' \hhline{|=|=|=|=|=|=|=|} ');
         elseif(i==length(Os) && j==length(Ts))
-            s = strcat(s, ' \hline ');
+            str = strcat(str, ' \hline ');
         else
-            s = strcat(s, ' \cline{2-7} ');
+            str = strcat(str, ' \cline{2-7} ');
         end
-        fprintf(fid,'%s\r\n',s);
+        fprintf(fid,'%s\r\n',str);
     end
+    matlab2tikz(strcat('./output/interpolation/interpolation-comparison-Tnorma-',func2str(Ts(j).f),'--T',sprintf('%d',t),'_S',sprintf('%d',s),'_L',sprintf('%d',l),'_H',sprintf('%d',h),'_D',sprintf('%d',d),'.tikz'),'showInfo', false,'standalone', false,'height', '\figureheight', 'width', '\figurewidth');
 end
 fprintf(fid,'%s\r\n','\end{longtable}');
 fclose(fid);
