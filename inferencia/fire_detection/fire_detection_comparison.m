@@ -1,6 +1,9 @@
 clearvars;
 addpath('./lang_variables');
 addpath('../functions');
+
+tic; 
+
 % Parámetros gráfico
 alw = 0.75;    % AxesLineWidth
 fsz = 9;      % Fontsize
@@ -77,7 +80,7 @@ for j=1:length(Ts)
     figure('name',strcat('T-norma: ', Ts(j).name));
     set(gca, 'FontSize', fsz, 'LineWidth', alw);
     for i=1:length(Os)
-        Y = interpolation( R, fact, y, Os(i).f , Ts(j).f, M);
+        Y = hashed_interpolation( R, fact, x_threat, Os(i).f , Ts(j).f, M);
         
         % Defuzzification
         dc = round(defuzz(x_threat, Y, 'centroid'));
@@ -110,3 +113,5 @@ for j=1:length(Ts)
 end
 fprintf(fid,'%s\r\n','\end{longtable}');
 fclose(fid);
+
+toc
