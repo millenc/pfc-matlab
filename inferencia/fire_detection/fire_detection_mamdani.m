@@ -11,11 +11,8 @@ function B = fire_detection_mamdani(temp, smoke, light, humidity, distance)
     % Premisa
     fact = [temp,smoke,light,humidity,distance];
 
-    %Universo de salida
-    y.v(1,:) = x_threat;
-
     % Aplicar método de Mamdani
-    B = mamdani(R, fact, y);
+    B = mamdani(R, fact, x_threat);
 
     %Defusificar
     dc = round(defuzz(x_threat, B, 'centroid'));
@@ -34,7 +31,7 @@ function B = fire_detection_mamdani(temp, smoke, light, humidity, distance)
     figure;
     set(gca, 'FontSize', fsz, 'LineWidth', alw);
     hold on;
-    hl = plot(y.v(1,:),B,'-k','LineWidth',lw,'MarkerSize',msz);
+    hl = plot(x_threat,B,'-k','LineWidth',lw,'MarkerSize',msz);
     hdc = plot(dc,B(dc+1),'*b','LineWidth',lw,'MarkerSize',msz);
     hdb = plot(db,B(db+1),'+g','LineWidth',lw,'MarkerSize',msz);
     hdm = plot(dm,B(dm+1),'sr','LineWidth',lw,'MarkerSize',msz);

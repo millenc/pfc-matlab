@@ -1,7 +1,7 @@
 function B = mamdani( R, fact, y)
 
 n = length(R);
-B = zeros(length(R), length(y.v(1,:)));
+B = zeros(length(R), length(y));
 
 % Evaluar cada regla
 for i=1:n
@@ -13,7 +13,7 @@ for i=1:n
   
   %Obtener el valor del fuzzy set de salida para esta regla "clippeando" el consecuente con
   %el mínimo de los grados de pertenencia de cada antecedente.
-  B(i,:) = min(arrayfun(R(i).B, y.v(1,:)),min(u)); 
+  B(i,:) = min(arrayfun(R(i).B, y),min(u)); 
 end
 
 %Agregar todos los consecuentes obtenidos utilizando el máximo

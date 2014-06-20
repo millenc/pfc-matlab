@@ -60,11 +60,7 @@ fact(3) = singleton_fuzzifier(x_light, 500);
 fact(4) = singleton_fuzzifier(x_humidity, 50);
 fact(5) = singleton_fuzzifier(x_distance, 40);
 
-% Variable universo de salida
-y.v(1,:) = x_threat;
-y.v(2,:) = zeros(length(x_threat),1);
-
-Y = interpolation( R, fact, y, O , T, M);
+Y = hashed_interpolation( R, fact, x_threat, O , T, M);
 
 dc = round(defuzz(x_threat, Y, 'centroid'));
 db = round(defuzz(x_threat, Y, 'bisector'));

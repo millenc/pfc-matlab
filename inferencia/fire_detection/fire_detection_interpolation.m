@@ -21,11 +21,7 @@ fact(3) = singleton_fuzzifier(x_light, l);
 fact(4) = singleton_fuzzifier(x_humidity, h);
 fact(5) = singleton_fuzzifier(x_distance, d);
 
-% Variable universo de salida
-y.v(1,:) = x_threat;
-y.v(2,:) = zeros(length(x_threat),1);
-
-B = interpolation( R, fact, y, O.f , T, M);
+B = hashed_interpolation( R, fact, x_threat, O.f , T, M);
 
 %Defusificar
 dc = round(defuzz(x_threat, B, 'centroid'));
@@ -44,7 +40,7 @@ msz = 9;       % MarkerSize
 figure;
 set(gca, 'FontSize', fsz, 'LineWidth', alw);
 hold on;
-hl = plot(y.v(1,:),B,'-k','LineWidth',lw,'MarkerSize',msz);
+hl = plot(x_threat,B,'-k','LineWidth',lw,'MarkerSize',msz);
 hdc = plot(dc,B(dc+1),'*b','LineWidth',lw,'MarkerSize',msz);
 hdb = plot(db,B(db+1),'+g','LineWidth',lw,'MarkerSize',msz);
 hdm = plot(dm,B(dm+1),'sr','LineWidth',lw,'MarkerSize',msz);
