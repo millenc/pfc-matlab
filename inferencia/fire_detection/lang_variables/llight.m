@@ -1,9 +1,12 @@
+% Variable lingüística: Luz (lux)
 classdef llight
     methods (Static)
+        % Universo
         function x = get_x()
             x = 0:1000;
         end
         
+        % Valores
         function u = low(light)
             u = lineal(0,400,light,'r');
         end

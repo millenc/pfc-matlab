@@ -1,9 +1,12 @@
+% Variable lingüística: Riesgo del incendio (%C)
 classdef threat
     methods (Static)
+        % Universo
         function x = get_x()
             x = 0:100;
         end
         
+        % Valores
         function u = very_low(threat)
             u = lineal(0,25,threat,'r');
         end

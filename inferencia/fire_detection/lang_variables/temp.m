@@ -1,9 +1,12 @@
+% Variable lingüística: Temperatura (ºC)
 classdef temp
     methods (Static)
+        % Universo
         function x = get_x()
             x = 0:120;
         end
         
+        % Valores
         function u = low(temp)
             u = lineal(0,50,temp,'r');
         end

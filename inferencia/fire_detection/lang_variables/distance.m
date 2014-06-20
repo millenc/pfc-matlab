@@ -1,9 +1,12 @@
+% Variable lingüística: Distancia (m)
 classdef distance
     methods (Static)
+        % Universo
         function x = get_x()
             x = 0:80;
         end
         
+        % Valores
         function u = close(distance)
             u = lineal(0,30,distance,'r');
         end
