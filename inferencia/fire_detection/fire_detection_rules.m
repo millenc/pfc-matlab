@@ -343,4 +343,3 @@ for i=1:m
     R(i).B = rules{i,n};
 end
 end
-
