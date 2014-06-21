@@ -1,3 +1,14 @@
+% Cálculo del grado de activación de una regla utilizando índices de
+% solapamiento.
+% Parámetros:
+% R: Regla (estructura).
+% fact: Premisa.
+% O: Índice de solapamiento utilizado.
+% T: T-norma utilizada.
+%
+% Devuelve:
+% m = grado de activación
+
 function m = matching_degree(R, fact, O, T)
 
 overlaps = zeros(length(R.A),1);
@@ -7,4 +18,3 @@ end
 m = T(overlaps);
 
 end
-
