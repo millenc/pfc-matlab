@@ -1,3 +1,4 @@
+% Índices de solapamiento
 classdef O
     methods (Static)
         function O = pi()

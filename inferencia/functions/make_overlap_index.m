@@ -1,6 +1,9 @@
+% Construcción de índice de solapamiento
+% M: Una función de agregación.
+% Go: Una función de solapamiento
+% O: Valor devuelto, el índice de solapamiento construido a partir de M y
+% Go.
 function O = make_overlap_index( M , Go )
-%MAKE_OVERLAP_INDEX Summary of this function goes here
-%   Detailed explanation goes here
 
     function o = overlap_index( A , B )
         o = M(arrayfun(Go,A,B));
