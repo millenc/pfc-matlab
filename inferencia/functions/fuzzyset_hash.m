@@ -1,3 +1,13 @@
+% Hash de conjuntos difusos
+% Devuelve:
+%
+% fh: Puntero a una función que implementa una tabla hash de conjuntos
+% difusos con parámetros:
+%   mf: Función de pertenencia del conjunto.
+%   x: Universo de referencia.
+% Si el conjunto se ha calculado previamente, se devuelve dicho valor
+% precalculado. En caso contrario, se aplica la función de pertenencia mf
+% al universo de referencia x.
 function fh = fuzzyset_hash()
     hash = struct;
 
