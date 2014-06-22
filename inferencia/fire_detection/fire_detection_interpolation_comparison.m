@@ -45,7 +45,7 @@ Ts(5).f = @sinmean;  Ts(5).name = 'Sinmean';            Ts(5).latex_name = '$T_{
 Ts(6).f = @einsteinmean;  Ts(6).name = 'Einstein mean'; Ts(6).latex_name = '$T_{einstein}$';
 
 % Abrir fichero
-fName = strcat('table-interpolation-comparison--','T',sprintf('%d',t),'_S',sprintf('%d',s),'_L',sprintf('%d',l),'_H',sprintf('%d',h),'_D',sprintf('%d',d),'.tex');%'fire_detection_interpolation_comparison.tex';
+fName = strcat('table-interpolation-comparison--', 'T', sprintf('%d',t), '_S', sprintf('%d',s), '_L', sprintf('%d',l), '_H', sprintf('%d',h), '_D', sprintf('%d',d), '.tex');
 fid = fopen(fName,'w');
 if fid<0
     error 'No se ha podido abrir el fichero';
@@ -63,8 +63,8 @@ for j=1:length(Ts)
         [Y,dc,db,dm,ds,dl] = fire_detection_interpolation(Os(i).f , Ts(j).f, M, t, s, l, h, d);
 
         subplot(3,2,i);
-        plot(x_threat,Y,'-k',dc,Y(dc+1),'*b',db,Y(db+1),'+g',dm,Y(dm+1),'sr',ds,Y(ds+1),'vc',dl,Y(dl+1),'^m','LineWidth',lw);
-        %legend('Threat',strcat('centroid:',sprintf('%d',dc)),strcat('bisector:',sprintf('%d',db)),strcat('mom:',sprintf('%d',dm)),strcat('som:',sprintf('%d',ds)),strcat('lom:',sprintf('%d',dl)));
+        plot(x_threat, Y, '-k', dc, Y(dc+1), '*b', db, Y(db+1), '+g', dm, Y(dm+1), 'sr', ds, Y(ds+1), 'vc', dl, Y(dl+1), '^m', 'LineWidth', lw);
+        %legend('Threat', strcat('centroid:', sprintf('%d', dc)), strcat('bisector:', sprintf('%d', db)), strcat('mom:', sprintf('%d', dm)), strcat('som:', sprintf('%d', ds)), strcat('lom:', sprintf('%d', dl)));
         title(Os(i).name);
 
         % Escribir fila
@@ -72,7 +72,7 @@ for j=1:length(Ts)
         if(i==1)
             str = strcat(str,'\multirow{',sprintf('%d', length(Os)),'}{*}{',Ts(j).latex_name,'} ');
         end
-        str = strcat(str,'& ',Os(i).latex_name,' & ',sprintf('%d',dc),' & ',sprintf('%d',db),' & ',sprintf('%d',ds),' & ',sprintf('%d',dm),' & ',sprintf('%d',dl),' \\ ');
+        str = strcat(str, '& ', Os(i).latex_name, ' & ', sprintf('%d',dc), ' & ', sprintf('%d',db), ' & ', sprintf('%d',ds), ' & ', sprintf('%d',dm), ' & ', sprintf('%d',dl),' \\ ');
         if(i==length(Os) && j<length(Ts))
             str = strcat(str, ' \hhline{|=|=|=|=|=|=|=|} ');
         elseif(i==length(Os) && j==length(Ts))
@@ -82,7 +82,7 @@ for j=1:length(Ts)
         end
         fprintf(fid,'%s\r\n',str);
     end
-    matlab2tikz(strcat('./output/interpolation/interpolation-comparison-Tnorma-',func2str(Ts(j).f),'--T',sprintf('%d',t),'_S',sprintf('%d',s),'_L',sprintf('%d',l),'_H',sprintf('%d',h),'_D',sprintf('%d',d),'.tikz'),'showInfo', false,'standalone', false,'height', '\figureheight', 'width', '\figurewidth');
+    matlab2tikz(strcat( './output/interpolation/interpolation-comparison-Tnorma-', func2str(Ts(j).f), '--T', sprintf('%d',t), '_S', sprintf('%d',s), '_L', sprintf('%d',l), '_H', sprintf('%d',h), '_D', sprintf('%d',d), '.tikz'),'showInfo', false, 'standalone', false, 'height', '\figureheight', 'width', '\figurewidth');
 end
 fprintf(fid,'%s\r\n','\end{longtable}');
 fclose(fid);
