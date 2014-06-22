@@ -60,7 +60,7 @@ Os(5).f = Osin;    Os(5).name = 'Osin';     Os(5).latex_name = '$O_{sin}$';
 Ts(1).f = @prod; Ts(1).name = 'Producto';               Ts(1).latex_name = '$T_{prod}$';
 Ts(2).f = @min;  Ts(2).name = 'Mínimo';                 Ts(2).latex_name = '$T_{min}$';
 Ts(3).f = @geomean;  Ts(3).name = 'Media geométrica';   Ts(3).latex_name = '$T_{geo}$';
-Ts(4).f = @harmmean;  Ts(4).name = 'Media harmónica';   Ts(4).latex_name = '$T_{harm}$';
+Ts(4).f = @harmmean;  Ts(4).name = 'Media armónica';   Ts(4).latex_name = '$T_{harm}$';
 Ts(5).f = @sinmean;  Ts(5).name = 'Sinmean';            Ts(5).latex_name = '$T_{sin}$';
 Ts(6).f = @einsteinmean;  Ts(6).name = 'Einstein mean'; Ts(6).latex_name = '$T_{einstein}$';
 
