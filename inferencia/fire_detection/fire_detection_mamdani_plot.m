@@ -50,7 +50,9 @@ if(p.Results.showTitle == true)
     title( strcat('Temp: ', sprintf('%d',temp), ', Humo: ', sprintf('%d',smoke), ', Luz: ', sprintf('%d',light), ', Humedad: ', sprintf('%d',humidity), ', Distancia: ', sprintf('%d',distance)));
 end
 if(p.Results.showLegend == true)
-    legend(strcat('centroid: ',sprintf('%d',dc)),strcat('bisector: ',sprintf('%d',db)),strcat('mom: ',sprintf('%d',dm)),strcat('som: ',sprintf('%d',ds)),strcat('lom: ',sprintf('%d',dl)));
+    lh = legend(strcat('ctr: ',sprintf('%d',dc)),strcat('bis: ',sprintf('%d',db)),strcat('mom: ',sprintf('%d',dm)),strcat('som: ',sprintf('%d',ds)),strcat('lom: ',sprintf('%d',dl)));
+    set(lh,'Location','NorthOutside');
+    set(lh,'Orientation','horizontal');
 end
 if(p.Results.exportTikz == true)
     matlab2tikz( strcat('./output/mamdani/mamdani-','T', sprintf('%d',temp),'_S', sprintf('%d',smoke),'_L', sprintf('%d',light),'_H', sprintf('%d',humidity),'_D', sprintf('%d',distance),'.tikz'),'showInfo', false,'standalone', false,'height', '\figureheight', 'width', '\figurewidth');
